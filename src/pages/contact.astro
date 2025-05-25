@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StagewiseToolbar from '../components/StagewiseToolbar.astro';
+// お問い合わせページ
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTACT｜HeartfeltAiart</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="mx-auto max-w-3xl px-4 py-16 font-body text-[15px] leading-relaxed">
+    <!-- 見出し -->
+    <h1 class="font-heading text-4xl italic tracking-widest text-primary-blue mb-8">
+      CONTACT
+    </h1>
+
+    <!-- リード文 -->
+    <p class="mb-6">
+      イラストレーション／その他のクリエイティブワークのご依頼は、
+    </p>
+
+    <!-- 箇条書き -->
+    <ul class="mb-8 space-y-1 pl-4 text-primary-blue list-disc">
+      <li>スケジュール・使用媒体</li>
+      <li>ご予算</li>
+      <li>その他お支払い時期</li>
+      <li>1c(モノクロ) or 4c(カラー)</li>
+      <li>流用／二次使用の有無</li>
+      <li>その他のご相談事項</li>
+    </ul>
+
+    <!-- 説明文 -->
+    <p class="mb-10">
+      などを明記の上、右のメールフォームよりお問い合わせください。
+      <br />
+      確認のうえ、追ってご連絡いたします。
+    </p>
+
+    <!-- 注意書き -->
+    <p class="mb-12 text-alert-red">
+      ※注）・予算ご提示の際、<b>2024年度の賃上げ実態に倣い、5〜10%程度</b>
+      の増額をご検討いただけますと幸甚です。
+    </p>
+
+    <!-- フォーム -->
+    <form class="space-y-6">
+      <div>
+        <label class="block mb-1">お名前 *</label>
+        <input
+          type="text"
+          required
+          class="w-full rounded-none border border-primary-blue/60 p-3 placeholder-primary-blue/80 focus:border-primary-blue focus:ring-0"
+          placeholder="お名前"
+        />
+      </div>
+
+      <div>
+        <label class="block mb-1">メールアドレス *</label>
+        <input
+          type="email"
+          required
+          class="w-full rounded-none border border-primary-blue/60 p-3 placeholder-primary-blue/80 focus:border-primary-blue focus:ring-0"
+          placeholder="aistudio.sengoku@gmail.com"
+        />
+      </div>
+
+      <div>
+        <label class="block mb-1">件名</label>
+        <input
+          type="text"
+          class="w-full rounded-none border border-primary-blue/60 p-3 placeholder-primary-blue/80 focus:border-primary-blue focus:ring-0"
+          placeholder="件名"
+        />
+      </div>
+
+      <div>
+        <label class="block mb-1">メッセージ *</label>
+        <textarea
+          required
+          rows="6"
+          class="w-full rounded-none border border-primary-blue/60 p-3 placeholder-primary-blue/80 focus:border-primary-blue focus:ring-0 resize-none"
+          placeholder="ご要望・ご相談内容をご記入ください"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="mx-auto block rounded-none bg-primary-blue px-8 py-3 text-white tracking-widest hover:opacity-90"
+      >
+        送　信
+      </button>
+    </form>
+  </main>
+
+  <StagewiseToolbar />
+
+  <script>
+    // フォーム送信処理
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('送信しました！（ダミー）');
+    });
+  </script>
+</body>
+</html>

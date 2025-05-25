@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+// レイアウトはインラインで定義します
+---
+
+<Layout title="HeartfeltAiart | AIイラストレーター">
+  <style>
+    /* Tailwind クラスのインラインスタイル */
+    body {
+      font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+      background-color: #FFFFE0;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(255, 255, 224, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .logo:hover {
+      color: #ff4081;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: #000;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ff4081;
+    }
+    main {
+      padding-top: 5rem;
+    }
+    .hero {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .hero-video {
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .section {
+      padding: 4rem 0;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .creator-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .creator-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ff4081;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding: 0.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      aspect-ratio: 9/16;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-font-smoothing: subpixel-antialiased;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .social-icon {
+      color: #000;
+      transition: color 0.3s;
+    }
+    .social-icon:hover {
+      color: #ff4081;
+    }
+    footer {
+      background-color: rgba(255, 255, 224, 0.9);
+      padding: 2.5rem 0;
+      margin-top: 5rem;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .footer-tagline {
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .copyright {
+      color: #555;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">HeartfeltAiart</a>
+        <nav>
+          <ul>
+            <li><a href="/">ホーム</a></li>
+            <li><a href="#gallery">GALLERY</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/videos/homepage1.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+    </section>
+
+    <section id="about" class="section container">
+      <h2 class="section-title">制作者紹介</h2>
+      <div class="creator-profile">
+        <img src="/images/noguchi.png" alt="野口" class="creator-image">
+        <p>
+          HeartfeltAiartは、AIの力を活用して感情豊かなアートを創造するイラストレーターです。
+          テクノロジーと芸術の融合を追求し、従来の表現方法にとらわれない新しい視覚体験を提供します。
+          一つ一つの作品に心を込め、見る人の感性に響くアートを生み出すことを目指しています。
+        </p>
+        <p>
+          デジタルアートの可能性を広げながら、人間の創造性とAIの協働による新しい表現の地平を切り開いています。
+          商業プロジェクトから個人的な芸術探求まで、幅広い分野でクリエイティブなソリューションを提供しています。
+        </p>
+      </div>
+    </section>
+
+    <section id="gallery" class="section container">
+      <h2 class="section-title">ギャラリー</h2>
+      <div class="gallery">
+        {Array.from({ length: 16 }).map((_, i) => (
+          <div class="gallery-item">
+            <img src={`/images/homepage${i + 1}.png`} alt={`作品 ${i + 1}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="social" class="section container">
+      <h2 class="section-title">SNS</h2>
+      <div class="social-links">
+        <a href="https://www.instagram.com/aiart_heartfelt?igsh=bHl3enNhdGc1d3Vo" target="_blank" rel="noopener noreferrer" class="social-icon">
+          <img src="/images/instaicon.png" alt="Instagram" width="32" height="32" />
+        </a>
+        <a href="https://www.threads.net/@aiart_heartfelt" target="_blank" rel="noopener noreferrer" class="social-icon">
+          <img src="/images/threadsicon.png" alt="Threads" width="32" height="32" />
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="creator-profile">
+        <p>
+          作品制作のご依頼やコラボレーションのご提案など、お気軽にお問い合わせください。
+        </p>
+        <a href="/contact" class="btn-contact" style="display: inline-block; background: #ff4081; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 0.25rem; cursor: pointer; font-weight: bold; transition: background-color 0.3s; text-decoration: none; margin-top: 1rem;">お問い合わせページへ</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-logo">HeartfeltAiart</div>
+      <p class="footer-tagline">AIで創るアート、心を込めて</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/aiart_heartfelt?igsh=bHl3enNhdGc1d3Vo" target="_blank" rel="noopener noreferrer" class="social-icon">
+          <img src="/images/instaicon.png" alt="Instagram" width="24" height="24" />
+        </a>
+        <a href="https://www.threads.net/@aiart_heartfelt" target="_blank" rel="noopener noreferrer" class="social-icon">
+          <img src="/images/threadsicon.png" alt="Threads" width="24" height="24" />
+        </a>
+      </div>
+      <p class="copyright">&copy; {new Date().getFullYear()} HeartfeltAiart. All rights reserved.</p>
+    </div>
+  </footer>
+</Layout>

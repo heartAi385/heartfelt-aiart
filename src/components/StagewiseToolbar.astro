@@ -1,0 +1,18 @@
+---
+// StagewiseToolbar.astro - Astroプロジェクト用のStagewiseツールバーコンポーネント
+---
+
+<script>
+  // 開発環境でのみ実行
+  if (import.meta.env.DEV) {
+    import('@stagewise/toolbar').then(({ initToolbar }) => {
+      const stagewiseConfig = {
+        plugins: []
+      };
+      
+      initToolbar(stagewiseConfig);
+    }).catch(err => {
+      console.error('Failed to load Stagewise toolbar:', err);
+    });
+  }
+</script>
