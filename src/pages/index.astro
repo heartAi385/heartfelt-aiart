@@ -106,9 +106,13 @@ import Layout from '../layouts/Layout.astro';
       max-width: 600px;
       margin: 0 auto;
       line-height: 2;
+      padding: 0 1rem;
     }
     .profile-text p {
       margin-bottom: 2rem;
+      text-align: justify;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
     .gallery {
       display: grid;
@@ -192,6 +196,13 @@ import Layout from '../layouts/Layout.astro';
       .logo {
         font-size: 1.25rem;
       }
+      .profile-text {
+        font-size: 0.9rem;
+        line-height: 1.8;
+      }
+      .profile-text p {
+        text-align: left;
+      }
     }
   </style>
 
@@ -201,7 +212,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="/" class="logo">HeartfeltAiart</a>
         <nav>
           <ul>
-            <li><a href="/">ホーム</a></li>
+            <li><a href="/#top">ホーム</a></li>
             <li><a href="#gallery">GALLERY</a></li>
             <li><a href="#contact">お問い合わせ</a></li>
           </ul>
@@ -211,7 +222,7 @@ import Layout from '../layouts/Layout.astro';
   </header>
 
   <main>
-    <section class="hero">
+    <section id="top" class="hero">
       <video class="hero-video" autoplay muted loop playsinline>
         <source src="/videos/homepage1.mp4" type="video/mp4">
         お使いのブラウザは動画再生に対応していません。
@@ -224,16 +235,16 @@ import Layout from '../layouts/Layout.astro';
         <img src="/images/noguchi.png" alt="野口" class="creator-image">
         <div class="profile-text">
           <p>
-            HeartfeltAiartは、AIの力を活用して感情豊かなアートを創造する<br>
-            イラストレーターです。テクノロジーと芸術の融合を追求し、<br>
-            従来の表現方法にとらわれない新しい視覚体験を提供します。<br>
-            一つ一つの作品に心を込め、見る人の感性に響くアートを<br>
+            HeartfeltAiartは、AIの力を活用して感情豊かなアートを創造する
+            イラストレーターです。テクノロジーと芸術の融合を追求し、
+            従来の表現方法にとらわれない新しい視覚体験を提供します。
+            一つ一つの作品に心を込め、見る人の感性に響くアートを
             生み出すことを目指しています。
           </p>
           <p>
-            デジタルアートの可能性を広げながら、人間の創造性とAIの協働による<br>
-            新しい表現の地平を切り開いています。商業プロジェクトから<br>
-            個人的な芸術探求まで、幅広い分野でクリエイティブな<br>
+            デジタルアートの可能性を広げながら、人間の創造性とAIの協働による
+            新しい表現の地平を切り開いています。商業プロジェクトから
+            個人的な芸術探求まで、幅広い分野でクリエイティブな
             ソリューションを提供しています。
           </p>
         </div>
