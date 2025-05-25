@@ -30,22 +30,26 @@ import StagewiseToolbar from '../components/StagewiseToolbar.astro';
       <li>スケジュール・使用媒体</li>
       <li>ご予算</li>
       <li>その他お支払い時期</li>
-      <li>1c(モノクロ) or 4c(カラー)</li>
       <li>流用／二次使用の有無</li>
       <li>その他のご相談事項</li>
     </ul>
 
     <!-- 説明文 -->
     <p class="mb-10">
-      などを明記の上、右のメールフォームよりお問い合わせください。
+      などを明記の上、以下のメールフォームよりお問い合わせください。
       <br />
       確認のうえ、追ってご連絡いたします。
+    </p>
+
+    <!-- 必須項目の注意書き -->
+    <p class="text-sm text-gray-600 mb-6">
+      ★印のところは入力必須
     </p>
 
     <!-- フォーム -->
     <form class="space-y-6" id="contact-form">
       <div>
-        <label class="block mb-1">お名前 *</label>
+        <label class="block mb-1">お名前 ★</label>
         <input
           type="text"
           name="name"
@@ -56,7 +60,7 @@ import StagewiseToolbar from '../components/StagewiseToolbar.astro';
       </div>
 
       <div>
-        <label class="block mb-1">メールアドレス *</label>
+        <label class="block mb-1">メールアドレス ★</label>
         <input
           type="email"
           name="email"
@@ -77,7 +81,7 @@ import StagewiseToolbar from '../components/StagewiseToolbar.astro';
       </div>
 
       <div>
-        <label class="block mb-1">メッセージ *</label>
+        <label class="block mb-1">メッセージ ★</label>
         <textarea
           name="message"
           required

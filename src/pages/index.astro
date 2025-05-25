@@ -99,8 +99,16 @@ import Layout from '../layouts/Layout.astro';
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid #ff4081;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .profile-text {
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 2;
+    }
+    .profile-text p {
+      margin-bottom: 2rem;
     }
     .gallery {
       display: grid;
@@ -175,8 +183,14 @@ import Layout from '../layouts/Layout.astro';
       .gallery {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
+      nav ul {
+        gap: 0.75rem;
+      }
       nav a {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
+      }
+      .logo {
+        font-size: 1.25rem;
       }
     }
   </style>
@@ -208,20 +222,26 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="section-title">制作者紹介</h2>
       <div class="creator-profile">
         <img src="/images/noguchi.png" alt="野口" class="creator-image">
-        <p>
-          HeartfeltAiartは、AIの力を活用して感情豊かなアートを創造するイラストレーターです。
-          テクノロジーと芸術の融合を追求し、従来の表現方法にとらわれない新しい視覚体験を提供します。
-          一つ一つの作品に心を込め、見る人の感性に響くアートを生み出すことを目指しています。
-        </p>
-        <p>
-          デジタルアートの可能性を広げながら、人間の創造性とAIの協働による新しい表現の地平を切り開いています。
-          商業プロジェクトから個人的な芸術探求まで、幅広い分野でクリエイティブなソリューションを提供しています。
-        </p>
+        <div class="profile-text">
+          <p>
+            HeartfeltAiartは、AIの力を活用して感情豊かなアートを創造する<br>
+            イラストレーターです。テクノロジーと芸術の融合を追求し、<br>
+            従来の表現方法にとらわれない新しい視覚体験を提供します。<br>
+            一つ一つの作品に心を込め、見る人の感性に響くアートを<br>
+            生み出すことを目指しています。
+          </p>
+          <p>
+            デジタルアートの可能性を広げながら、人間の創造性とAIの協働による<br>
+            新しい表現の地平を切り開いています。商業プロジェクトから<br>
+            個人的な芸術探求まで、幅広い分野でクリエイティブな<br>
+            ソリューションを提供しています。
+          </p>
+        </div>
       </div>
     </section>
 
     <section id="gallery" class="section container">
-      <h2 class="section-title">ギャラリー</h2>
+      <h2 class="section-title">GALLERY</h2>
       <div class="gallery">
         {Array.from({ length: 16 }).map((_, i) => (
           <div class="gallery-item">
