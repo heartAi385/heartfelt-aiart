@@ -3,13 +3,13 @@ import Layout from '../layouts/Layout.astro';
 // ギャラリーページ
 ---
 
-<Layout title="ギャラリー | HeartfeltAiart">
+<Layout title="GALLERY | HeartfeltAiart">
   <style>
     /* Tailwind クラスのインラインスタイル */
     body {
       font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
-      background-color: #000;
-      color: #fff;
+      background-color: #FFFFE0;
+      color: #000;
       margin: 0;
       padding: 0;
     }
@@ -18,7 +18,7 @@ import Layout from '../layouts/Layout.astro';
       width: 100%;
       top: 0;
       z-index: 50;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(255, 255, 224, 0.8);
       backdrop-filter: blur(10px);
     }
     .container {
@@ -36,7 +36,7 @@ import Layout from '../layouts/Layout.astro';
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: bold;
-      color: #fff;
+      color: #000;
       text-decoration: none;
       transition: color 0.3s;
       letter-spacing: 0.05em;
@@ -52,9 +52,10 @@ import Layout from '../layouts/Layout.astro';
       padding: 0;
     }
     nav a {
-      color: #fff;
+      color: #000;
       text-decoration: none;
       transition: color 0.3s;
+      font-size: 0.9rem;
     }
     nav a:hover {
       color: #ff4081;
@@ -73,38 +74,102 @@ import Layout from '../layouts/Layout.astro';
       text-align: center;
       letter-spacing: 0.05em;
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 0.5rem;
+
+    /* タブスタイル */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      border-bottom: 2px solid #ddd;
     }
-    .gallery-item {
+    .tab-button {
+      background: none;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+    }
+    .tab-button.active {
+      color: #ff4081;
+      border-bottom-color: #ff4081;
+    }
+    .tab-button:hover {
+      color: #ff4081;
+    }
+
+    /* スライダーのスタイル */
+    .slider-container {
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
-      overflow: hidden;
-      border-radius: 0.5rem;
-      aspect-ratio: 9/16;
+      padding: 0 20px;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+
+    .slider img {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       cursor: pointer;
       transition: transform 0.3s;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
-    .gallery-item:hover {
-      transform: translateY(-5px);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-      -webkit-font-smoothing: subpixel-antialiased;
-    }
-    .gallery-item:hover img {
+
+    .slider img:hover {
       transform: scale(1.05);
     }
+
+    /* ナビゲーションボタン */
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      font-size: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .nav:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .nav.prev {
+      left: 10px;
+    }
+
+    .nav.next {
+      right: 10px;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 8px 12px;
+        font-size: 18px;
+      }
+    }
+
+    /* モーダル */
     .modal {
       display: none;
       position: fixed;
@@ -127,11 +192,6 @@ import Layout from '../layouts/Layout.astro';
       max-height: 90vh;
       max-width: 100%;
       object-fit: contain;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-      -webkit-font-smoothing: subpixel-antialiased;
     }
     .close {
       position: absolute;
@@ -142,6 +202,7 @@ import Layout from '../layouts/Layout.astro';
       font-weight: bold;
       cursor: pointer;
     }
+
     .social-links {
       display: flex;
       justify-content: center;
@@ -149,14 +210,14 @@ import Layout from '../layouts/Layout.astro';
       margin-top: 3rem;
     }
     .social-icon {
-      color: #fff;
+      color: #000;
       transition: color 0.3s;
     }
     .social-icon:hover {
       color: #ff4081;
     }
     footer {
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(255, 255, 224, 0.9);
       padding: 2.5rem 0;
       margin-top: 5rem;
     }
@@ -171,7 +232,7 @@ import Layout from '../layouts/Layout.astro';
       margin-bottom: 0.5rem;
     }
     .footer-tagline {
-      color: #9ca3af;
+      color: #555;
       margin-bottom: 1.5rem;
     }
     .footer-social {
@@ -180,10 +241,70 @@ import Layout from '../layouts/Layout.astro';
       margin-bottom: 2rem;
     }
     .copyright {
-      color: #6b7280;
+      color: #555;
       text-align: center;
     }
+
+    /* レスポンシブデザイン */
+    /* スマホ用（768px以下） */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.5rem 0;
+      }
+      nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav a {
+        font-size: 0.8rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .tabs {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .tab-button {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
+      .section {
+        padding: 2rem 0;
+      }
+      main {
+        padding-top: 7rem;
+      }
+    }
+
+    /* タブレット用（768px〜1024px） */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    /* PC用（1024px以上） */
+    @media (min-width: 1025px) {
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    .gallery-description {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
   </style>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <header>
     <div class="container">
@@ -192,7 +313,7 @@ import Layout from '../layouts/Layout.astro';
         <nav>
           <ul>
             <li><a href="/">ホーム</a></li>
-            <li><a href="/gallery">ギャラリー</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
             <li><a href="/contact">お問い合わせ</a></li>
           </ul>
         </nav>
@@ -202,16 +323,28 @@ import Layout from '../layouts/Layout.astro';
 
   <main>
     <section class="section container">
-      <h1 class="section-title">ギャラリー</h1>
+      <h2 class="section-title">GALLERY</h2>
+      <p class="gallery-description">各ページ10枚ずつ並んでいます</p>
       
-      <div class="gallery">
-        {Array.from({ length: 16 }).map((_, i) => (
-          <div class="gallery-item" onclick={`openModal('/images/homepage${i + 1}.png')`}>
-            <img src={`/images/homepage${i + 1}.png`} alt={`作品 ${i + 1}`} loading="lazy" />
-          </div>
-        ))}
+      <!-- タブ -->
+      <div class="tabs">
+        <button class="tab-button active" onclick="switchTab('people', this)">人物</button>
+        <button class="tab-button" onclick="switchTab('scenery', this)">風景</button>
+        <button class="tab-button" onclick="switchTab('etc', this)">etc</button>
       </div>
-      
+
+      <!-- スライダー -->
+      <div class="slider-container">
+        <div class="slider">
+          <button class="nav prev" aria-label="前の画像">&#10094;</button>
+          <img id="slide" src="" alt="" onclick="openModal(this.src)" />
+          <button class="nav next" aria-label="次の画像">&#10095;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2 class="section-title">SNS</h2>
       <div class="social-links">
         <a href="https://www.instagram.com/aiart_heartfelt?igsh=bHl3enNhdGc1d3Vo" target="_blank" rel="noopener noreferrer" class="social-icon">
           <img src="/images/instaicon.png" alt="Instagram" width="32" height="32" />
@@ -224,10 +357,10 @@ import Layout from '../layouts/Layout.astro';
   </main>
 
   <!-- モーダル -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
+  <div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
       <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modalImage" class="modal-image" src="" alt="拡大画像">
+      <img id="modal-image" class="modal-image" src="" alt="">
     </div>
   </div>
 
@@ -243,29 +376,94 @@ import Layout from '../layouts/Layout.astro';
           <img src="/images/threadsicon.png" alt="Threads" width="24" height="24" />
         </a>
       </div>
-      <p class="copyright">&copy; {new Date().getFullYear()} HeartfeltAiart. All rights reserved.</p>
+      <p style="font-size: 0.8rem; margin-top: 1rem; color: #666; text-align: center;">&copy; 2025 HeartfeltAiart</p>
     </div>
   </footer>
 
-  <script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script is:inline>
+    // 画像データ（各カテゴリー10枚ずつ）
+    const galleryData = {
+      people: [
+        '/images/person1.png', '/images/person2.png', '/images/person3.png',
+        '/images/person4.png', '/images/person5.png', '/images/person6.png',
+        '/images/person7.png', '/images/person8.png', '/images/person9.png',
+        '/images/person10.png'
+      ],
+      scenery: [
+        '/images/landscape1.png', '/images/landscape2.png', '/images/landscape3.png',
+        '/images/landscape4.png', '/images/landscape5.png', '/images/landscape6.png',
+        '/images/landscape7.png', '/images/landscape8.png', '/images/landscape9.png',
+        '/images/landscape10.png'
+      ],
+      etc: [
+        '/images/etc1.png', '/images/etc2.png', '/images/etc3.png',
+        '/images/etc4.png', '/images/etc5.png', '/images/etc6.png',
+        '/images/etc7.png', '/images/etc8.png', '/images/etc9.png',
+        '/images/etc10.png'
+      ]
+    };
+
+    let currentCategory = 'people';
+    let currentIndex = 0;
+    const slideEl = document.getElementById('slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    function showSlide(index) {
+      const images = galleryData[currentCategory];
+      currentIndex = (index + images.length) % images.length;
+      slideEl.src = images[currentIndex];
+      slideEl.alt = `${currentCategory} 作品 ${currentIndex + 1}`;
+    }
+
+    // タブ切り替え
+    function switchTab(category, button) {
+      // タブボタンのアクティブ状態を更新
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      currentCategory = category;
+      currentIndex = 0;
+      showSlide(0);
+    }
+
     // モーダル機能
     function openModal(imageSrc) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
+      const modal = document.getElementById('modal');
+      const modalImage = document.getElementById('modal-image');
       modal.style.display = 'flex';
-      modalImg.src = imageSrc;
+      modalImage.src = imageSrc;
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-      document.getElementById('imageModal').style.display = 'none';
+      const modal = document.getElementById('modal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
 
-    // モーダル外クリックで閉じる
-    window.onclick = function(event) {
-      const modal = document.getElementById('imageModal');
-      if (event.target == modal) {
-        modal.style.display = 'none';
-      }
-    }
+    // イベントリスナー
+    prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+
+    // キーボードの矢印でも操作可能
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn.click();
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // 初期化
+    window.addEventListener('load', () => {
+      showSlide(0);
+    });
+
+    // グローバル関数として定義（HTMLから呼び出せるように）
+    window.switchTab = switchTab;
+    window.openModal = openModal;
+    window.closeModal = closeModal;
   </script>
 </Layout>
